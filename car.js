@@ -10,7 +10,7 @@ class Car {
 
         this.speed = 0;
         this.acceleration = 0.2;
-        this.maxSpeed = 2.8;
+        this.maxSpeed = 2.5;
         this.friction = 0.05;
         this.angle = 0;
 
@@ -18,6 +18,10 @@ class Car {
     }
 
     update() {
+        this.#moveCar();
+    }
+
+    #moveCar() {
         if (this.controls.forward) {
             this.speed += this.acceleration;
         }
@@ -25,21 +29,25 @@ class Car {
         if (this.controls.reverse) {
             this.speed -= this.acceleration;
         }
+        // If car reaches the max speed
         if (this.speed > this.maxSpeed) {
             this.speed = this.maxSpeed;
         }
         if (this.speed < -this.maxSpeed / 2) {
             this.speed = -this.maxSpeed / 2;
         }
+        // Apply friction to the car
         if (this.speed > 0) {
             this.speed -= this.friction;
         }
         if (this.speed < 0) {
             this.speed += this.friction;
         }
+        // Stop the car from moving on its own when speed == 0
         if (Math.abs(this.speed) < this.friction) {
             this.speed = 0;
         }
+        // Turning angles for the car
         if (this.speed != 0) {
             const flip = this.speed > 0 ? 1 : -1;
             if (this.controls.left) {
@@ -49,7 +57,6 @@ class Car {
                 this.angle -= 0.03 * flip;
             }            
         }
-
         
         this.x -= Math.sin(this.angle) * this.speed;
         this.y -= Math.cos(this.angle) * this.speed;
