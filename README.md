@@ -1,2 +1,2 @@
-Self Driving Car Simulation using JavaScript without libraries.
+Self Driving Car Simulation using JavaScript.
 Followed tutorial by freeCodeCamp.
