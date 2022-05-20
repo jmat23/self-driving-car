@@ -1,6 +1,5 @@
 // Car class details 
 class Car {
-
     // Parameters of the car. Contains x, y, width and height.
     constructor(x, y, width, height) {
         this.x = x;
@@ -14,18 +13,21 @@ class Car {
         this.friction = 0.05;
         this.angle = 0;
 
+        this.sensor = new Sensor(this);
         this.controls = new Controls();
     }
 
-    update() {
+    update(roadBorders) {
         this.#moveCar();
+        this.sensor.update(roadBorders);
     }
 
     #moveCar() {
+        // Car moving forward
         if (this.controls.forward) {
             this.speed += this.acceleration;
         }
-
+        // Car reversing
         if (this.controls.reverse) {
             this.speed -= this.acceleration;
         }
@@ -77,5 +79,7 @@ class Car {
         );
         ctx.fill();
         ctx.restore();
+
+        this.sensor.draw(ctx);
     }
 }
