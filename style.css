@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background: darkgreen;
+    background: url('images/pixelGrass.jpeg');
     overflow: hidden;
     text-align: center;
 }
