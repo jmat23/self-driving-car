@@ -7,7 +7,7 @@ class Controls {
 
         // Checks when a key is being pressed 
         switch(type) {
-            case "KEYS": 
+            case "AI": 
             this.#addKeyboardListeners();
             break;
             case "DUMMY":
